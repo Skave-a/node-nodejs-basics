@@ -10,8 +10,14 @@ const copy  = async () => {
   const destPath = path.join(__dirname, 'files_copy');
 
   try {
-    //  fs.stat возвращает объект, который содержит информацию о файле или папке, такую как размер, дату создания, дату изменения, права доступа и другие сведения.
+    //  fs.stat возвращает объект, который содержит информацию о файле или папке, 
+    // такую как размер, дату создания, дату изменения, права доступа и другие сведения.
     await fs.stat(srcPath);
+  } catch (error) {
+    throw new Error('FS operation failed');
+  }
+
+  try {
     await fs.stat(destPath);
     throw new Error('FS operation failed');
   } catch (error) {

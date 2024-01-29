@@ -9,7 +9,9 @@ const __dirname = dirname(__filename);
 const scriptPath = path.join(__dirname, 'files', 'script.js');
 
 const spawnChildProcess = async (args) => {
-  const child = spawn('node', [scriptPath, ...args], { stdio: ['pipe', 'pipe', 'inherit'] });
+  const child = spawn('node', [scriptPath, ...args], {
+    stdio: ['pipe', 'pipe', 'pipe', 'ipc']
+  });
 
   process.stdin.pipe(child.stdin);
 
@@ -18,8 +20,8 @@ const spawnChildProcess = async (args) => {
   });
 
   child.on('exit', (code, signal) => {
-    console.log(`Child process exited with code ${code} and signal ${signal}`);
+    console.log(`code ${code} and signal ${signal}`);
   });
 };
 
-spawnChildProcess(['someArgument1', 'someArgument2']);
+spawnChildProcess(['arg1', 'arg2']);

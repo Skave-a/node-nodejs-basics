@@ -8,7 +8,19 @@ const read = async () => {
     const filePath = path.join(__dirname, 'files', 'fileToRead.txt');
 
     const readableStream = fs.createReadStream(filePath);
+
+    readableStream.on('error', (error) => {
+        console.error('Failed to open or read file:', error.message);
+        throw new Error('Read operation failed');
+    });
+
     readableStream.pipe(process.stdout);
 };
 
-await read();
+(async () => {
+    try {
+        await read();
+    } catch (error) {
+        console.error('Failed to print file content:', error.message);
+    }
+})();

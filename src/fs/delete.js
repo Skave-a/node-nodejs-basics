@@ -6,10 +6,9 @@ const remove = async () => {
     const __filename = fileURLToPath(import.meta.url);
     const __dirname = path.dirname(__filename);
     const filePath = path.join(__dirname, 'files', 'fileToRemove.txt');
-  
+
     try {
       await fs.promises.access(filePath);
-      // fs.promises.unlink для удаления файла.
       await fs.promises.unlink(filePath);
     } catch (error) {
       if (error.code === 'ENOENT') {
@@ -19,6 +18,5 @@ const remove = async () => {
       }
     }
   };
-  
+
   await remove();
-  

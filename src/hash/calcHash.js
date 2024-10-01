@@ -19,7 +19,7 @@ const calculateHash = async () => {
 
     stream.on('end', () => {
       const hexHash = hash.digest('hex');
-      console.log(hexHash);
+      console.log('\x1b[33m\x1b[1m%s\x1b[0m', hexHash);
       resolve();
     });
 
@@ -29,4 +29,11 @@ const calculateHash = async () => {
   });
 };
 
-await calculateHash();
+(async () => {
+  try {
+    await calculateHash();
+  } catch (error) {
+    console.error("Error calculating hash:", error.message || 'Hash calculation failed');
+    throw new Error('Hash operation failed');
+  }
+})();

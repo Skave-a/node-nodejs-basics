@@ -6,7 +6,7 @@ const read = async () => {
     const __filename = fileURLToPath(import.meta.url);
     const __dirname = path.dirname(__filename);
     const filePath = path.join(__dirname, 'files', 'fileToRead.txt');
-  
+
     try {
       await fs.promises.access(filePath);
       const fileContent = await fs.promises.readFile(filePath, 'utf-8');
@@ -19,6 +19,5 @@ const read = async () => {
       }
     }
   };
-  
+
   await read();
-  

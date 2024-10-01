@@ -6,10 +6,6 @@ import { fileURLToPath } from 'url';
 import { createRequire } from 'module';
 
 const random = Math.random();
-// createRequire() является методом встроенного модуля module в Node.js, 
-// который создает функцию require, доступную в файле ECMAScript модуля. 
-// Функция require позволяет импортировать другие модули и использовать
-// их содержимое в текущем файле.
 const require = createRequire(import.meta.url);
 let unknownObject;
 

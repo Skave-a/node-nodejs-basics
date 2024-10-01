@@ -6,7 +6,7 @@ const list = async () => {
     const __filename = fileURLToPath(import.meta.url);
     const __dirname = path.dirname(__filename);
     const folderPath = path.join(__dirname, 'files');
-  
+
     try {
       await fs.promises.access(folderPath);
       const fileNames = await fs.promises.readdir(folderPath);
@@ -19,6 +19,5 @@ const list = async () => {
       }
     }
   };
-  
+
   await list();
-  
